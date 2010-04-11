@@ -1,0 +1,11 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3051
+
+This library provides simple text-based forms for vim. Currently supported UI elements:
+
+    - text fields (with optional completion, tooltips, and validation)
+    - check boxes
+
+Check out further examples on:
+http://github.com/tomtom/vimform_vim/tree/master/test/
+http://github.com/tomtom/vimform_vim/downloads
+
