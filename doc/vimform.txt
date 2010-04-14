@@ -43,6 +43,7 @@ The following field types are currently supported:
 
     - text fields
     - check boxes
+    - single choice/drop-down lists
 
                                                     *vimform-keys*
 The following key maps can be used to navigate through forms:
@@ -72,10 +73,14 @@ The following key maps can be used to navigate through forms:
 <LeftMouse>
 <space>
 <cr>            If the cursor is located over a checkbox, toggle that 
-                check box
+                check box. If the cursor is over a drop-down list, open the 
+                list.
 
 a
 i               Switch to insert mode.
+
+<c-n> <c-p> <c-y> <c-e>
+                Navigate drop-down lists. See also |ins-completion|.
 
 
 -----------------------------------------------------------------------
@@ -93,13 +98,32 @@ Also available via git: http://github.com/tomtom/vimform_vim/
 ========================================================================
 Contents~
 
-        vimform#New ............ |vimform#New()|
-        vimform#SimpleForm ..... |vimform#SimpleForm()|
-        :VimformReset .......... |:VimformReset|
-        g:vimform#prototype .... |g:vimform#prototype|
-        vimform#Balloon ........ |vimform#Balloon()|
-        vimform#Complete1 ...... |vimform#Complete1()|
-        vimform#Complete ....... |vimform#Complete()|
+        :Vimform ....................... |:Vimform|
+        vimform#New .................... |vimform#New()|
+        vimform#SimpleForm ............. |vimform#SimpleForm()|
+        :VimformReset .................. |:VimformReset|
+        g:vimform#forms ................ |g:vimform#forms|
+        g:vimform#view ................. |g:vimform#view|
+        g:vimform#prototype ............ |g:vimform#prototype|
+        g:vimform#widgets .............. |g:vimform#widgets|
+        vimform#AppendOrInsert ......... |vimform#AppendOrInsert()|
+        vimform#Insertmode ............. |vimform#Insertmode()|
+        vimform#Feedkeys ............... |vimform#Feedkeys()|
+        vimform#PumKey ................. |vimform#PumKey()|
+        vimform#SpecialInsertKey ....... |vimform#SpecialInsertKey()|
+        vimform#Balloon ................ |vimform#Balloon()|
+        vimform#Complete1 .............. |vimform#Complete1()|
+        vimform#Complete ............... |vimform#Complete()|
+        vimform#CompleteSingleChoice ... |vimform#CompleteSingleChoice()|
+        vimform#CommandComplete ........ |vimform#CommandComplete()|
+        vimform#Command ................ |vimform#Command()|
+
+
+========================================================================
+plugin/vimform.vim~
+
+                                                    *:Vimform*
+:Vimform
 
 
 ========================================================================
@@ -119,9 +143,18 @@ vimform#SimpleForm()
     If called with [!], use the original values. Otherwise try to reuse 
     the current values.
 
+                                                    *g:vimform#forms*
+g:vimform#forms                (default: {})
+
+                                                    *g:vimform#view*
+g:vimform#view                 (default: "split")
+
                                                     *g:vimform#prototype*
 g:vimform#prototype            (default: {...})
     The default form tepmlate.
+
+                                                    *g:vimform#widgets*
+g:vimform#widgets              (default: {})
 
 
 
@@ -133,14 +166,38 @@ g:vimform#prototype#Show(?cmd = "split")
     cmd should create a new buffer. By default, the new buffer will be 
     shown in a split view.
 
-                                                    *vimform#Balloon()*
+                                                    *vimform#AppendOrInsert()*
+vimform#AppendOrInsert()
+
+                                                    *vimform#Insertmode()*
+vimform#Insertmode()
+
+                                                    *vimform#Feedkeys()*
 g:vimform#prototype.GetCurrentFieldName(?pos = '.') dict "{{{3
+
+                                                    *vimform#PumKey()*
+vimform#PumKey(key)
+
+                                                    *vimform#SpecialInsertKey()*
+vimform#SpecialInsertKey(key, pumkey, prepend)
+
+                                                    *vimform#Balloon()*
+vimform#Balloon()
 
                                                     *vimform#Complete1()*
 vimform#Complete1()
 
                                                     *vimform#Complete()*
 vimform#Complete(findstart, base)
+
+                                                    *vimform#CompleteSingleChoice()*
+vimform#CompleteSingleChoice(findstart, base)
+
+                                                    *vimform#CommandComplete()*
+vimform#CommandComplete(ArgLead, CmdLine, CursorPos)
+
+                                                    *vimform#Command()*
+vimform#Command(cmd)
 
 
 
